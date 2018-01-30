@@ -1,34 +1,48 @@
-buildscript {
-    repositories {
-        maven { url "http://repo.spring.io/libs-snapshot" }
-        mavenLocal()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
-    }
-}
-
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
+apply plugin: 'maven'
 
-jar {
-    baseName = 'gs-batch-processing'
-    version =  '0.1.0'
-}
+group = 'org.podcastpedia.batch'
+version = '0.1.0'
+
+description = """"""
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+
 
 repositories {
-    mavenCentral()
-    maven { url "http://repo.spring.io/libs-snapshot" }
+        
+     maven { url "http://maven.repository.redhat.com/earlyaccess/all/" }
+     maven { url "http://maven.repository.redhat.com/techpreview/all" }
+     maven { url "http://repo.maven.apache.org/maven2" }
 }
-
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-batch")
-    compile("org.hsqldb:hsqldb")
-    testCompile("junit:junit")
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-batch', version:'1.1.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'1.1.6.RELEASE'
+    compile(group: 'org.apache.httpcomponents', name: 'httpclient', version:'4.3.5') {
+exclude(module: 'commons-logging')
+    }
+    compile group: 'org.apache.httpcomponents', name: 'httpcore', version:'4.3.2'
+    compile group: 'org.apache.velocity', name: 'velocity', version:'1.7'
+    compile(group: 'org.apache.velocity', name: 'velocity-tools', version:'2.0') {
+exclude(module: 'struts-core')
+    }
+    compile group: 'rome', name: 'rome', version:'1.0'
+    compile group: 'rome', name: 'rome-fetcher', version:'1.0'
+    compile group: 'org.jdom', name: 'jdom', version:'1.1'
+    compile group: 'xerces', name: 'xercesImpl', version:'2.9.1'
+    compile group: 'mysql', name: 'mysql-connector-java', version:'5.1.31'
+    compile group: 'org.scala-lang', name: 'scala-library', version:'2.10.3'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version:'1.1.6.RELEASE'
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-remote-shell', version:'1.1.6.RELEASE') {
+exclude(module: 'mail')
+    }
+    compile group: 'javax.mail', name: 'mail', version:'1.4.7'
+    compile group: 'javax.inject', name: 'javax.inject', version:'1'
+    compile group: 'org.twitter4j', name: 'twitter4j-core', version:'[4.0,)'
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.1.6.RELEASE') {
+exclude(module: 'commons-logging')
+    }
+    compile group: 'log4j', name: 'log4j', version:'1.2.17'
 }
