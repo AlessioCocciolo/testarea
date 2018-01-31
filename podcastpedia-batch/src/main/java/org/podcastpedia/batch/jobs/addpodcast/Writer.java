@@ -38,15 +38,15 @@ public class Writer implements ItemWriter<SuggestedPodcast>{
 			entityManager.flush();
 			
 			//notify submitter about the insertion and post a twitt about it 
-			String url = buildUrlOnPodcastpedia(podcast);
+//			String url = buildUrlOnPodcastpedia(podcast);
 			
-			emailNotificationService.sendPodcastAdditionConfirmation(
-					suggestedPodcast.getName(), suggestedPodcast.getEmail(),
-					url);
-			if(podcast.getTwitterPage() != null){
-				socialMediaService.postOnTwitterAboutNewPodcast(podcast,
-				url);				
-			}					
+//			emailNotificationService.sendPodcastAdditionConfirmation(
+//					suggestedPodcast.getName(), suggestedPodcast.getEmail(),
+//					url);
+//			if(podcast.getTwitterPage() != null){
+//				socialMediaService.postOnTwitterAboutNewPodcast(podcast,
+//				url);				
+//			}					
 		}
 
 	}

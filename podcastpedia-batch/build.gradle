@@ -1,5 +1,17 @@
+println System.getProperty("java.home")
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'spring-boot'
 
 group = 'org.podcastpedia.batch'
 version = '0.1.0'
@@ -46,4 +58,14 @@ exclude(module: 'mail')
 exclude(module: 'commons-logging')
     }
     compile group: 'log4j', name: 'log4j', version:'1.2.17'
+}
+
+jar {
+    manifest {
+        attributes("Main-Class": "org.podcastpedia.batch.Application" )
+    }
+}
+
+bootRepackage {
+    mainClass = 'org.podcastpedia.batch.Application'
 }
