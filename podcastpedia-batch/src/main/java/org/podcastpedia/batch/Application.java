@@ -37,12 +37,12 @@ public class Application {
         ConfigurableApplicationContext ctx = app.run(args);
         JobLauncher jobLauncher = ctx.getBean(JobLauncher.class);
     	        		
-        if(ADD_NEW_PODCAST_JOB.equals(args[0])){
+        if(ADD_NEW_PODCAST_JOB.equals(args[1])){
         	//addNewPodcastJob
         	Job addNewPodcastJob = ctx.getBean(ADD_NEW_PODCAST_JOB, Job.class);
         	JobParameters jobParameters = new JobParametersBuilder()
     		.addDate("date", new Date())
-			.addString("directoryPath", args[1])
+			.addString("directoryPath", args[2])
     		.toJobParameters();  
         	
         	JobExecution jobExecution = jobLauncher.run(addNewPodcastJob, jobParameters);
@@ -57,7 +57,7 @@ public class Application {
 			log.info(String.format("*********** Exit status: %s", exitCode));
 
 			if(exitStatus.equals(ExitStatus.COMPLETED)){
-				renameFile(args[1]);
+				renameFile(args[2]);
 			}
 
         	JobInstance jobInstance = jobExecution.getJobInstance();
@@ -70,7 +70,7 @@ public class Application {
         } else if(NEW_EPISODES_NOTIFICATION_JOB.equals(args[0])){
         	JobParameters jobParameters = new JobParametersBuilder()
     		.addDate("date", new Date())
-    		.addString("updateFrequency", args[1])
+    		.addString("updateFrequency", args[2])
     		.toJobParameters();  
         	
         	jobLauncher.run(ctx.getBean(NEW_EPISODES_NOTIFICATION_JOB,  Job.class), jobParameters);   

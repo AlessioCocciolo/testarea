@@ -38,7 +38,7 @@ public class InfrastructureConfiguration {
 
 	Properties additionalJpaProperties() {
 		  Properties properties = new Properties();
-//		  properties.setProperty("hibernate.hbm2ddl.auto", "validate");
+		  //properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		  properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 		  properties.setProperty("hibernate.show_sql", "true");
 		  
