@@ -1,0 +1,1 @@
+java -jar dbfparser-0.0.1-SNAPSHOT.jar C:\WA\Progetti\Temp\DBFParser\dbfparser\dist\work
